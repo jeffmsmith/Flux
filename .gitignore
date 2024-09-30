@@ -10,4 +10,5 @@
 notes.txt
 env.js
 package-lock.json
-
+.parcel-cache/
+/routes/

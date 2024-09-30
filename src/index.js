@@ -7,6 +7,7 @@ import './course.js';
 import './lock.js';
 import { inject } from '@vercel/analytics';
 
+
 inject();
 
 function startServiceWorker() {
@@ -27,7 +28,7 @@ function startServiceWorker() {
     };
 }
 
-function start() {
+async function start() {
     console.log('start app.');
 
     // startServiceWorker(); // stable version only
