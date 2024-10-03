@@ -344,6 +344,36 @@ xf.reg(`ant:search:stopped`, (x, db) => {
     db.antSearchList = [];
 });
 
+
+// API
+function SignUp() {
+    const url = "http://localhost:8080/api/sign_up";
+    const $form = document.querySelector("#signup--form");
+    $form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        submit();
+    });
+
+    async function submit() {
+        const formData = new FormData($form);
+
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(Object.fromEntries(formData)),
+            });
+
+            const result = await response.json();
+        } catch(error) {
+            console.log(error);
+        }
+    }
+}
+// END API
+
 //
 xf.reg('app:start', async function(_, db) {
 
@@ -377,6 +407,7 @@ xf.reg('app:start', async function(_, db) {
     const sound = Sound({volume: db.volume});
     sound.start();
 
+    // SignUp();
     // TRAINER MOCK
     // trainerMock.init();
 });
