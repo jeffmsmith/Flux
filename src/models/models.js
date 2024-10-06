@@ -188,6 +188,7 @@ class Sources extends Model {
             coreBodyTemperature: 'ble:coreTemp',
             skinTemperature:     'ble:coreTemp',
             virtualState: 'power',
+            autoPause:    false,
         };
         return sources;
     }
@@ -826,7 +827,6 @@ class PropAccumulator extends MetaProp {
         this.reset();
     }
     restore(db) {
-        console.log(`${this.propName}`);
         this.count = db[this.propName+"Count"] ?? this.count;
         this.state = db[this.propName] ?? this.state;
         this.prev = db[this.propName] ?? this.prev;

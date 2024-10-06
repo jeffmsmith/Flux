@@ -1047,10 +1047,15 @@ class SwitchGroup extends HTMLElement {
     }
     onSwitch(e) {
         const element = this.eventOwner(e);
+        console.log(e);
+        console.log(element);
+        console.log(element.attributes.index);
+        console.log(exists(element.attributes.index));
 
         if(exists(element.attributes.index)) {
 
             const id = parseInt(element.attributes.index.value) || 0;
+            console.log(id);
 
             if(equals(id, this.state)) {
                 return;
@@ -1166,6 +1171,42 @@ class LibrarySwitchGroup extends SwitchGroup {
 
 customElements.define('library-switch-group', LibrarySwitchGroup);
 
+class AuthForms extends HTMLElement {
+    constructor() {
+        super();
+        this.postInit();
+    }
+    postInit() {
+    }
+    connectedCallback() {
+        const self = this;
+        this.abortController = new AbortController();
+        this.signal = { signal: self.abortController.signal };
+
+        this.$signup = document.querySelector('#signup--form--section'); // tab 0
+        this.$login = document.querySelector('#login--form--section');   // tab 1
+        this.$toSignUp = document.querySelector('#to-signup--button');
+        this.$toLogin= document.querySelector('#to-login--button');
+
+        this.$toSignUp.addEventListener('pointerup', self.toSignup.bind(this));
+        this.$toLogin.addEventListener('pointerup', self.toLogin.bind(this));
+    }
+    disconnectedCallback() {
+        this.abortController.abort();
+        this.unsubs();
+    }
+    toSignup() {
+        this.$login.classList.remove('active');
+        this.$signup.classList.add('active');
+    }
+    toLogin() {
+        this.$signup.classList.remove('active');
+        this.$login.classList.add('active');
+    }
+}
+
+customElements.define('auth-forms', AuthForms);
+
 
 class MeasurementUnit extends DataView {
     getDefaults() {
@@ -1243,6 +1284,40 @@ class VirtualStateSource extends DataView {
 }
 
 customElements.define('virtual-state-source', VirtualStateSource);
+
+
+class AutoPause extends DataView {
+    postInit() {
+        this.effect  = 'sources';
+        this.state   = { autoPause: false };
+    }
+    getDefaults() {
+        return {
+            prop: 'db:sources',
+            effect: 'sources'
+        };
+    }
+    subs() {
+        xf.sub(`${this.prop}`, this.onUpdate.bind(this), this.signal);
+        this.addEventListener('pointerup', this.onEffect.bind(this), this.signal);
+    }
+    onUpdate(value) {
+        this.state = value.autoPause;
+        this.render();
+    }
+    onEffect() {
+        if(equals(this.state, true)) {
+            xf.dispatch(`${this.effect}`, {autoPause: false});
+        } else {
+            xf.dispatch(`${this.effect}`, {autoPause: true});
+        }
+    }
+    render() {
+        this.textContent = this.state ? 'On' : 'Off';
+    }
+}
+
+customElements.define('auto-pause', AutoPause);
 
 class DockModeBtn extends DataView {
     subs() {
