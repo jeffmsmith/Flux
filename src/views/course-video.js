@@ -105,7 +105,7 @@ class CourseVideo extends HTMLElement {
         if(exists(this.workout)) {
             var file = `${this.workout.meta.name.replace(/ /g,"_")}.mp4`;
             this.video = this.dom.courseVideoElement.querySelector('video');
-            this.video.src = new URL(file, 'http://localhost:1235/');
+            this.video.src = new URL(file, 'https://fluxvideos.test:1235/');
             this.video.preload = 'metadata';
             this.workout.meta.duration = this.video.duration;
             this.video.load();

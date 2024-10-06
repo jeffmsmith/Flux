@@ -11,3 +11,6 @@ notes.txt
 env.js
 .parcel-cache/
 /routes/
+*.key
+*.crt
+*.pem

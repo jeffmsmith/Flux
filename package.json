@@ -14,7 +14,7 @@
     "source": "src/index.html",
     "scripts": {
         "test": "jest",
-        "local": "http-server ./routes -p 1235",
+        "local": "http-server ./routes -p 1235 -S -C cert.pem -o",
         "start-parcel": "parcel",
         "start": "run-p local start-parcel",
         "build": "parcel build",
