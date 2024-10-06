@@ -41,7 +41,9 @@ class CourseVideo extends HTMLElement {
         var currentDistanceComplete = (distance * 100) / this.workout.meta.distance;
         var relativeSpeed = currentDistanceComplete - videoElapsed;
         // console.log(`Video duration: ${this.video.duration}, Distance: ${distance}, Video elapsed: ${videoElapsed}, CurrentDistanceComplete: ${currentDistanceComplete}, RelativeSpeed: ${relativeSpeed})`);
-        this.video.playbackRate = relativeSpeed;
+        if(this.video.playbackRate.toFixed(3) !== relativeSpeed.toFixed(3)) {
+            this.video.playbackRate = relativeSpeed;
+        }
     }
 
     onWorkout(workout) {
