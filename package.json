@@ -18,7 +18,7 @@
         "start-parcel": "parcel",
         "start": "run-p local start-parcel",
         "build": "parcel build",
-        "predeploy": "npm run build",
+        "predeploy": "parcel build ./src/index.html --public-url https://jeffmsmith.github.io/Flux/",
         "deploy": "gh-pages -d dist"
     },
     "dependencies": {
