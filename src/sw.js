@@ -1,3 +1,5 @@
+import * as fs from 'node:fs';
+
 const cacheName = 'Flux-v004';
 const resources = [
     './',
@@ -83,6 +85,7 @@ const resources = [
 
     'views/ant-device-scan.js',
     'views/connection-switch.js',
+    'views/courseVideo.js',
     'views/data-views.js',
     'views/effect-views.js',
     'views/graph.js',
@@ -115,8 +118,9 @@ const resources = [
 
 self.addEventListener('install', e => {
     console.log('SW: Install.');
-
-    e.waitUntil(caches.open(cacheName).then((cache) => cache.addAll(resources)));
+    e.waitUntil(caches.open(cacheName).then((cache) => {
+        cache.addAll(resources);
+    }));
 });
 
 self.addEventListener('activate', e => {
