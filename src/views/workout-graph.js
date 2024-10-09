@@ -240,12 +240,20 @@ class WorkoutGraph extends HTMLElement {
         }
 
         const index                 = args.index ?? 0;
-        const lapTime               = args.lapTime ?? this.workout.intervals[index].duration;
         const $dom                  = args.dom;
         const $parent               = args.parent;
         const rect                  = $dom.intervals[index].getBoundingClientRect();
         const left                  = rect.left - $parent.getBoundingClientRect().left;
-        const lapPercentageComplete = 1 - (lapTime / this.workout.intervals[index].duration);
+        let lapTime                 = args.lapTime;
+        if(equals('course', this.type) && !exists(lapTime)){
+            lapTime = this.workout.pointsSimplified[index].duration
+        } else {
+            lapTime = args.lapTime ?? this.workout.intervals[index].duration;
+        }
+        let lapDuration = equals(this.type, "course") 
+            ? this.workout.pointsSimplified[index].duration
+            : this.workout.intervals[index].duration;
+        const lapPercentageComplete = 1 - (lapTime / lapDuration);
 
         $dom.active.style.left   = `${left}px`;
         $dom.active.style.width  = `${rect.width}px`;
