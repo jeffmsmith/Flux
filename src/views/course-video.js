@@ -49,7 +49,7 @@ class CourseVideo extends HTMLElement {
     onWorkout(workout) {
         this.workout = workout;
         console.log(`Workout: ${JSON.stringify(workout)}`);
-        this.render();
+        this.render(this.dom);
     }
 
     onWatchStatus(status) {
@@ -97,7 +97,7 @@ class CourseVideo extends HTMLElement {
     }
 
     renderInit(dom) {
-        this.video = this.dom.courseVideoElement.querySelector('video');
+        this.video = dom.courseVideoElement.querySelector('video');
         dom.courseVideoElement.style.display = 'none';
     };
 

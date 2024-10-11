@@ -23,9 +23,15 @@
         <div class="wrapper">
             <page-group prop="page">
                 <compatibility-check></compatibility-check>
+                <div id="course-video">
+                    <course-video>
+                        <video looped controlslist="nodownload noremoteplayback noplaybackrate">
+                        </video>
+                    </course-video>
+                </div>
                 <div id="home-page" class="page active" page="home">
                     <div id="home-page-wrapper">
-
+                      
                         <header class="connections-header page-header">
                             <connection-switch for="ble:controllable" id="switch-controllable" class="connection-switch">
                                 <div class="connection-switch--indicator off"></div>
@@ -231,13 +237,6 @@
                                 </div>
                             </data-tile-switch-group>
                         </div> <!-- end data-tiles -->
-
-                        <div id="course-video" width="100%">
-                            <course-video>
-                                <video height="360" controls controlslist="nodownload noremoteplayback noplaybackrate">
-                                </video>
-                            </course-video>
-                        </div>
 
                         <div id="graph-power" class="graph">
                             <h4 class="graph--heading">Power</h4>

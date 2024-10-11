@@ -397,7 +397,7 @@ body {
     background-color: var(--dark);
 }
 .connections-header {
-    background-color: var(--chrome);
+    background-color: var(--black-opacity-02);
 }
 
 #progress-active {
@@ -602,13 +602,13 @@ body {
     grid-row: 2;
 
     font-size: 1rem;
-    --data-tile--heading-font-size: 1.0em;
-    --data-tile--value-font-size: 3.2em;
-    --data-tile--unit-font-size: 1em;
+    --data-tile--heading-font-size: 0.8em;
+    --data-tile--value-font-size: 1em;
+    --data-tile--unit-font-size: 0.6em;
 
-    --data-tile-small--heading-font-size: 1.0em;
-    --data-tile-small--value-font-size: 2.6em;
-    --data-tile-small--unit-font-size: 0.6em;
+    --data-tile-small--heading-font-size: 0.5em;
+    --data-tile-small--value-font-size: 0.8em;
+    --data-tile-small--unit-font-size: 0.3em;
 
     --data-tile--heading-margin: 0 auto 1em;
 
@@ -617,6 +617,7 @@ body {
     grid-template-rows: repeat(3, 1fr) 2rem;
     justify-items: center;
     align-items: center;
+    padding: 0.2em 0 8em 0;
 }
 
 #data-tile--power {
@@ -808,7 +809,7 @@ z-stack-item.active {
 
 /* Graphs */
 .graph {
-    font-size: 1rem;
+    font-size: 1.2rem;
     --graph-total-height: 100%;
     /* --graph-height: 90%; */
     /* --graph-heading-height: 10%; */
@@ -818,7 +819,7 @@ z-stack-item.active {
     width: 100%;
 
     display: grid;
-    grid-template-rows: minmax(1.4rem, auto) minmax(0, 100%);
+    grid-template-rows: minmax(1.2rem, auto) minmax(0, 100%);
 
     border-top: 1px solid var(--white-opacity-01);
 }
@@ -836,8 +837,8 @@ div.graph--bar-group {
 }
 #graph--info--cont {
     display: none;
-    font-size: 1.4em;
-    line-height: 1.2em;
+    font-size: 1.2em;
+    line-height: 1.0em;
     position: absolute;
     padding: 0.4em 0.4em;
     color: var(--black);
@@ -1107,7 +1108,7 @@ div.graph--bar-group {
     grid-template-columns: repeat(6, 1fr);
     align-items: center;
 
-    background-color: var(--dark);
+    background-color: var(--black-opacity-02);
     z-index: 3;
 }
 
@@ -2568,7 +2569,7 @@ and (min-width: 500px) {
     }
 
     .data-tiles {
-        font-size: 1rem;
+        font-size: 0.5rem;
 
         grid-area: 1 / 2 / 2 / 4;
 
@@ -2894,3 +2895,26 @@ and (min-width: 1900px) {
     }
 }
 /* END Media Queries */
+
+/* BEGIN Video Background */
+/* Style the video: 100% width and height to cover the entire window */
+#course-video {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    position: absolute;
+    overflow: hidden;
+    z-index: -10;
+
+    video {
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover; /* combined with 'absolute', works like background-size, but for DOM elements */
+    }
+}

@@ -14,12 +14,12 @@
     "source": "src/index.html",
     "scripts": {
         "test": "jest",
-        "local": "http-server ./routes -p 1235 -S -C cert.pem -o -a fluxvideos.test -P https://fluxvideos.test:1235",
+        "local": "http-server ./routes -p 1235 -S -C cert.pem -o -a fluxvideos.test -P https://192.168.0.141:1235",
         "start-parcel": "parcel",
         "start": "run-p local start-parcel",
         "build": "parcel build",
         "clean": "rm -rf dist .parcel-cache",
-        "predeploy": "npm run clean && parcel build ./src/index.html --no-cache --public-url https://jeffmsmith.github.io/Flux/",
+        "predeploy": "npm run clean && parcel build --no-cache --public-url https://jeffmsmith.github.io/Flux/",
         "deploy": "gh-pages -d dist"
     },
     "dependencies": {
